@@ -523,21 +523,65 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
-            color: white;
-            font-weight: 500;
+            background: #ffffff;
+            color: #1f2937;
+            border: 2px solid #e5e7eb;
+            padding: 12px;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
             cursor: pointer;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            line-height: 1;
+            user-select: none;
         }
 
         .dark-mode-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            background: #f3f4f6;
+            border-color: #d1d5db;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode-toggle:active {
+            transform: translateY(-1px) scale(0.95);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode-toggle:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode .dark-mode-toggle {
+            background: #1e293b;
+            color: #f8fafc;
+            border-color: #334155;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .dark-mode-toggle:hover {
+            background: #334155;
+            border-color: #475569;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode .dark-mode-toggle:active {
+            background: #475569;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .dark-mode-toggle:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
         }
 
         .history-section {
@@ -894,9 +938,8 @@
     </style>
 </head>
 <body>
-        <button class="dark-mode-toggle" id="darkModeToggle">🌙 Dark Mode</button>
-
         <div class="container">
+            <button class="dark-mode-toggle" id="darkModeToggle">🌙 Dark Mode</button>
             <h1>BMI Calculator</h1>
             <p>Enter your weight and height to calculate your Body Mass Index</p>
 
@@ -1043,10 +1086,10 @@
             body.classList.toggle('dark-mode');
             
             if (body.classList.contains('dark-mode')) {
-                toggleBtn.innerHTML = '☀️ Light Mode';
+                toggleBtn.innerHTML = '☀️';
                 localStorage.setItem('darkMode', 'enabled');
             } else {
-                toggleBtn.innerHTML = '🌙 Dark Mode';
+                toggleBtn.innerHTML = '🌙';
                 localStorage.setItem('darkMode', 'disabled');
             }
         }
@@ -1061,10 +1104,10 @@
             
             if (savedMode === 'enabled') {
                 body.classList.add('dark-mode');
-                toggleBtn.innerHTML = '☀️ Light Mode';
+                toggleBtn.innerHTML = '☀️';
             } else {
                 body.classList.remove('dark-mode');
-                toggleBtn.innerHTML = '🌙 Dark Mode';
+                toggleBtn.innerHTML = '🌙';
             }
         }
 
